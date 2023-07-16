@@ -1,45 +1,29 @@
 const express = require("express");
+const path = require("path");
 const jwt = require("jsonwebtoken");
 const router = express.Router();
+const bodyParser = require("body-parser");
+const urlencodedParser = bodyParser.urlencoded({ extended: false });
+const app = express();
 
-router.get("/login", (req, res) => {
-  res.send(`
-  <h2>Авторизация</h2>
-  <form action="/login" method="POST">
-    <div>
-      <label for="username">Имя пользователя:</label>
-    </div>
-    <input type="text" id="username" name="username" required>
-    <div>
-      <label for="password">Пароль:</label>
-    </div>
-    <input type="password" id="password" name="password" required>
-    <button type="submit">Войти</button>
-  </form>
-`);
+router.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "../html/login.html"));
 });
 
-router.post("/login", (req, res) => {
+router.post("/", urlencodedParser, (req, res) => {
+  const username = req.body.username;
+
+  if (!username) {
+    return response.status(400).json({ error: "Username is required" });
+  }
+
+  const password = req.body.password;
+  if (!password) {
+    return response.status(400).json({ error: "Password is required" });
+  }
   const token = jwt.sign("token", "secret");
   res.cookie("accesstoken", token, { maxAge: 900000, httpOnly: true });
   res.redirect("/admin");
-});
-
-router.get("/register", (req, res) => {
-  res.send(`
-  <h2>Авторизация</h2>
-  <form action="/login" method="POST">
-    <div>
-      <label for="username">Имя пользователя:</label>
-    </div>
-    <input type="text" id="username" name="username" required>
-    <div>
-      <label for="password">Пароль:</label>
-    </div>
-    <input type="password" id="password" name="password" required>
-    <button type="submit">Регистрация</button>
-  </form>
-`);
 });
 
 module.exports = router;

@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
+const path = require("path");
 
 const verifyToken = (req, res, next) => {
   // Получаем токен из кук
@@ -8,7 +9,7 @@ const verifyToken = (req, res, next) => {
 
   // Проверяем, есть ли токен
   if (!token) {
-    return res.status(401).json({ message: "Требуется авторизация" });
+    return res.sendFile(path.join(__dirname, "../html/denied.html"));
   }
 
   try {
@@ -25,7 +26,7 @@ const verifyToken = (req, res, next) => {
 };
 
 router.get("/", verifyToken, (req, res) => {
-  res.send("Поздравляю, вы админ");
+  res.sendFile(path.join(__dirname, "../html/admin.html"));
 });
 
 module.exports = router;

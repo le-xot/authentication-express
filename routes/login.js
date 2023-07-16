@@ -1,7 +1,7 @@
 const express = require("express");
+const router = express.Router();
 const path = require("path");
 const jwt = require("jsonwebtoken");
-const router = express.Router();
 const bodyParser = require("body-parser");
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 const app = express();
@@ -22,7 +22,7 @@ router.post("/", urlencodedParser, (req, res) => {
     return response.status(400).json({ error: "Password is required" });
   }
   const token = jwt.sign("token", "secret");
-  res.cookie("accesstoken", token, { maxAge: 900000, httpOnly: true });
+  res.cookie("accesstoken", token, { maxAge: 604800000, httpOnly: true });
   res.redirect("/admin");
 });
 

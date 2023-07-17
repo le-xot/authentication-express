@@ -14,7 +14,7 @@ router.get("/", (req, res) => {
 
 router.post("/", (req, res) => {
   const token = generateJwtToken(
-    { user: `${req.body.username}:${req.body.password}` },
+    { username: req.body.username, password: req.body.password },
     "secret"
   );
   res.cookie("accesstoken", token, { maxAge: 604800000, httpOnly: true });

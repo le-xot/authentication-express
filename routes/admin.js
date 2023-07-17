@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const jwt = require("jsonwebtoken");
 const path = require("path");
+const jwt = require("jsonwebtoken");
 
 const verifyToken = (req, res, next) => {
   // Получаем токен из кук

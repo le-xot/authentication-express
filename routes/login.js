@@ -2,26 +2,21 @@ const express = require("express");
 const router = express.Router();
 const path = require("path");
 const jwt = require("jsonwebtoken");
-const bodyParser = require("body-parser");
-const urlencodedParser = bodyParser.urlencoded({ extended: false });
-const app = express();
+
+function generateJwtToken(payload, secret) {
+  const token = jwt.sign(payload, secret);
+  return token;
+}
 
 router.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../html/login.html"));
 });
 
-router.post("/", urlencodedParser, (req, res) => {
-  const username = req.body.username;
-
-  if (!username) {
-    return response.status(400).json({ error: "Username is required" });
-  }
-
-  const password = req.body.password;
-  if (!password) {
-    return response.status(400).json({ error: "Password is required" });
-  }
-  const token = jwt.sign("token", "secret");
+router.post("/", (req, res) => {
+  const token = generateJwtToken(
+    { user: `${req.body.username}:${req.body.password}` },
+    "secret"
+  );
   res.cookie("accesstoken", token, { maxAge: 604800000, httpOnly: true });
   res.redirect("/admin");
 });

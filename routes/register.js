@@ -8,14 +8,14 @@ function generateJwtToken(payload, secret) {
   return token;
 }
 
-router.get("/register", (req, res) => {
+router.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../html/register.html"));
 });
 
-router.post("/register", (req, res) => {
-  const token = generateJwtToken({ user: req.body.username }, "secret");
-  res.cookie("accesstoken", token, { maxAge: 604800000, httpOnly: true });
-  res.redirect("/admin");
+router.post("/", (req, res) => {
+  // const token = generateJwtToken({ user: req.body.username }, "secret");
+  // res.cookie("accesstoken", token, { maxAge: 604800000, httpOnly: true });
+  // res.redirect("/admin");
 });
 
 module.exports = router;

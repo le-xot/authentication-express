@@ -1,12 +1,20 @@
-<form method="POST" action="/register">
-  <h2>Регистрация</h2>
-    <label for="username">
-      Имя:
-      <input name="username" type="text"  required />
-    </label>
-    <label for="password">
-      Пароль:
-      <input name="password" type="password" required />
-    </label>
-    <button type="submit">Регистрация</button>
-  </form>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Регистрация</title>
+  </head>
+  <body>
+    <h2>Регистрация</h2>
+    <form method="POST" action="/register">
+      <label for="username">
+        <label>Имя: </label>
+        <input name="username" type="text" required />
+      </label>
+      <label for="password">
+        <label>Пароль: </label>
+        <input name="password" type="password" required />
+      </label>
+      <button type="submit">Регистрация</button>
+    </form>
+  </body>
+</html>

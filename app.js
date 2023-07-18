@@ -1,6 +1,7 @@
 const express = require("./http.js");
 const mongodb = require("./db.js");
 const port = 3000;
+require("dotenv").config();
 
 async function start() {
   await mongodb.client.connect();

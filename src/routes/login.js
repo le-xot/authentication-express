@@ -20,6 +20,8 @@ router.post("/", (req, res) => {
   );
   res.cookie("accesstoken", token, { maxAge: 604800000, httpOnly: true });
   res.redirect("/admin");
+
+  // res.send(token);
 });
 
 module.exports = router;

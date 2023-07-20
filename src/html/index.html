@@ -5,15 +5,24 @@
   </head>
   <body>
     <h2>Главная страница</h2>
-    <li>
-      <a href="./login" target="_blank">
-        <span class="label">Войти</span>
-      </a>
-    </li>
-    <li>
-      <a href="./register" target="_blank">
-        <span class="label">Регистрация</span>
-      </a>
-    </li>
+    <table>
+      <tr>
+        <td>
+          <a href="./login" target="_self">
+            <input type="submit" value="Войти" />
+          </a>
+        </td>
+        <td>
+          <a href="./register" target="_self">
+            <input type="submit" value="Регистрация" />
+          </a>
+        </td>
+        <td>
+          <form method="POST" action="/delete">
+            <input type="submit" value="Удалить пользователей" />
+          </form>
+        </td>
+      </tr>
+    </table>
   </body>
 </html>

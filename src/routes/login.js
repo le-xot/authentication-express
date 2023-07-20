@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const path = require("path");
-const jwt = require("jsonwebtoken");
 const db = require("../db.js");
 require("dotenv").config();
 
@@ -20,11 +19,6 @@ router.post("/", async (req, res) => {
     password: password,
   }).exec();
   if (user !== null) {
-    const token = jwt.sign(
-      { username: user.username, password: user.password },
-      process.env.SECRET_TOKEN
-    );
-    res.cookie("accesstoken", token, { maxAge: 86400, httpOnly: true });
     res.redirect("/admin");
   } else {
     res.redirect("/login/denied");

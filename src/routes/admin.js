@@ -17,6 +17,11 @@ router.get("/api/users", async (req, res) => {
   }
 });
 
+router.post("/delete", async (req, res) => {
+  await db.User.deleteMany({ username: { $ne: "admin" } });
+  res.redirect("/admin");
+});
+
 module.exports = router;
 
 // const verifyToken = (req, res, next) => {

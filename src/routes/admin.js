@@ -1,9 +1,20 @@
 const express = require("express");
 const router = express.Router();
 const path = require("path");
+const db = require("../db.js");
 
 router.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../html/admin.html"));
+});
+
+router.get("/api/users", async (req, res) => {
+  try {
+    const users = await db.User.find({});
+    res.json(users);
+  } catch (error) {
+    console.error(error);
+    res.sendStatus(500);
+  }
 });
 
 module.exports = router;

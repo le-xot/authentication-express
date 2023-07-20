@@ -1,10 +1,36 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>😎</title>
+    <title>😎 Admin Page</title>
   </head>
   <body>
     <h2>Поздравляю, вы админ 😎</h2>
+    <table id="usersTable">
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Password</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <script>
+      fetch("admin/api/users")
+        .then((response) => response.json())
+        .then((users) => {
+          const rows = users.map((user) => {
+            return `
+              <tr>
+                <td>${user.username}</td>
+                <td>${user.password}</td>
+              </tr>
+            `;
+          });
+          const tbody = document.querySelector("#usersTable tbody");
+          tbody.innerHTML = rows.join("");
+        })
+        .catch((error) => console.error(error));
+    </script>
     <a href="./" target="_blank">
       <span class="label">Домой</span>
     </a>

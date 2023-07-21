@@ -4,11 +4,11 @@ const path = require("path");
 const db = require("../db.js");
 
 router.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../html/register.html"));
+  res.sendFile(path.join(__dirname, "../static/register.html"));
 });
 
 router.get("/warning", (req, res) => {
-  res.sendFile(path.join(__dirname, "../html/warning.html"));
+  res.sendFile(path.join(__dirname, "../static/warning.html"));
 });
 
 router.post("/", async (req, res) => {

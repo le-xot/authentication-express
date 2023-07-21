@@ -5,11 +5,11 @@ const db = require("../db.js");
 require("dotenv").config();
 
 router.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../html/login.html"));
+  res.sendFile(path.join(__dirname, "../static/login.html"));
 });
 
 router.get("/denied", (req, res) => {
-  res.sendFile(path.join(__dirname, "../html/denied.html"));
+  res.sendFile(path.join(__dirname, "../static/denied.html"));
 });
 
 router.post("/", async (req, res) => {

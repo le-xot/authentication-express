@@ -4,7 +4,7 @@ const path = require("path");
 const db = require("../db.js");
 
 router.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../html/admin.html"));
+  res.sendFile(path.join(__dirname, "../static/admin.html"));
 });
 
 router.get("/api/users", async (req, res) => {

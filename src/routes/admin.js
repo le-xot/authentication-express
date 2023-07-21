@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const path = require("path");
-const { User } = require("../repos/user.repo");
+const { deleteUsers } = require("../services/deleteUsers.service.js");
+const { User } = require("../repos/user.repo.js");
 
 router.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../static/admin.html"));
@@ -18,7 +19,7 @@ router.get("/api/users", async (req, res) => {
 });
 
 router.post("/delete", async (req, res) => {
-  await User.deleteMany({ username: { $ne: "admin" } });
+  await deleteUsers();
   res.redirect("/admin");
 });
 

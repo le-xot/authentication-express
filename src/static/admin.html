@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>😎 Admin Page</title>
+    <title>Админ</title>
     <style>
       body {
         background-color: rgb(184, 184, 184);
@@ -14,6 +14,7 @@
       <thead>
         <tr>
           <th>Username</th>
+          <th>⠀⠀⠀</th>
           <th>Password</th>
         </tr>
       </thead>
@@ -27,6 +28,7 @@
             return `
               <tr>
                 <td>${user.username}</td>
+                <th>⠀⠀⠀</th>
                 <td>${user.password}</td>
               </tr>
             `;
@@ -40,7 +42,7 @@
       <input type="submit" value="Удалить пользователей" />
     </form>
     <a href="/" target="_self">
-      <span class="label">Домой</span>
+      <input type="submit" value="Домой" />
     </a>
   </body>
 </html>

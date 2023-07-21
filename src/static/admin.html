@@ -10,6 +10,12 @@
   </head>
   <body align="center">
     <h2>Поздравляю, вы админ 😎</h2>
+    <form method="POST" action="/admin/delete">
+      <input type="submit" value="Удалить пользователей" />
+    </form>
+    <a href="/" target="_self">
+      <input type="submit" value="Домой" />
+    </a>
     <table id="usersTable" align="center">
       <thead>
         <tr>
@@ -38,11 +44,5 @@
         })
         .catch((error) => console.error(error));
     </script>
-    <form method="POST" action="/admin/delete">
-      <input type="submit" value="Удалить пользователей" />
-    </form>
-    <a href="/" target="_self">
-      <input type="submit" value="Домой" />
-    </a>
   </body>
 </html>

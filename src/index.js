@@ -1,7 +1,5 @@
 const express = require("./app.js");
 const mongoose = require("mongoose");
-const db = require("./services/db.service.js");
-
 const port = 3000;
 async function bootstrap() {
   try {

@@ -1,39 +1,26 @@
-const express = require("express");
-const router = express.Router();
+const { Router } = require("express");
+const router = Router();
 const path = require("path");
-const db = require("../db.js");
+const { login } = require("../services/login.service.js");
+const { db } = require("../services/db.service.js");
 require("dotenv").config();
 
 router.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../html/login.html"));
+  res.sendFile(path.join(__dirname, "../static/login.html"));
 });
 
 router.get("/denied", (req, res) => {
-  res.sendFile(path.join(__dirname, "../html/denied.html"));
+  res.sendFile(path.join(__dirname, "../static/denied.html"));
 });
 
 router.post("/", async (req, res) => {
   const { username, password } = req.body;
-  const user = await db.User.findOne({
-    username: username,
-    password: password,
-  }).exec();
-  if (user !== null) {
-    res.redirect("/admin");
-  } else {
-    res.redirect("/login/denied");
+
+  if (!username) {
+    return res.send("Username is empty");
   }
+
+  console.log(login(username, password));
 });
 
 module.exports = router;
-
-// function generateJwtToken(payload, secret) {
-//   const token = jwt.sign(payload, secret);
-//   return token;
-// }
-
-// const token = generateJwtToken(
-//   { username: req.body.username, password: req.body.password },
-//   process.env.SECRET_TOKEN
-// );
-// res.cookie("accesstoken", token, { maxAge: 604800000, httpOnly: true });

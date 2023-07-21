@@ -1,11 +1,16 @@
-const express = require("./http.js");
-const db = require("./db.js");
-const port = 3000;
+const express = require("express");
+const app = express();
 
-async function start() {
-  console.log("Connected successfully to server");
-  express.listen(port, () => {
-    console.log(`http://localhost:3000/`);
-  });
-}
-start();
+const indexRouter = require("./routes/index");
+const adminRouter = require("./routes/admin");
+const loginRouter = require("./routes/login");
+const registerRouter = require("./routes/register");
+
+app.use(express.urlencoded({ extended: true }));
+
+app.use("/", indexRouter);
+app.use("/admin", adminRouter);
+app.use("/login", loginRouter);
+app.use("/register", registerRouter);
+
+module.exports = app;

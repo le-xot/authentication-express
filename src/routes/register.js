@@ -17,14 +17,4 @@ router.post("/", async (req, res) => {
     : res.redirect("/register/warning");
 });
 
-// const { username, password } = req.body;
-// const user = await User.findOne({
-//   username: username,
-// }).exec();
-// if (user === null) {
-//   User.create({ username: username, password: password });
-//   res.redirect("/login");
-// } else {
-//   res.redirect("/register/warning");
-// }
 module.exports = router;

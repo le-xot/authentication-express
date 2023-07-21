@@ -8,17 +8,21 @@
       }
     </style>
   </head>
-  <body>
+  <body align="center">
     <h2>Войти</h2>
-    <form method="POST" action="/login">
-      <label for="username">
-        <label>Имя: </label>
-        <input name="username" type="text" required />
-      </label>
-      <label for="password">
-        <label>Пароль: </label>
-        <input name="password" type="password" required />
-      </label>
+    <form method="POST" action="/login" align="center">
+      <p>
+        <label for="username">
+          <label>⠀⠀Имя: </label>
+          <input name="username" type="text" required />
+        </label>
+      </p>
+      <p>
+        <label for="password">
+          <label>Пароль: </label>
+          <input name="password" type="password" required />
+        </label>
+      </p>
       <button type="submit">Войти</button>
     </form>
     <a href="/" target="_self">

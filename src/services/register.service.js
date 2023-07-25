@@ -4,11 +4,15 @@ const bcrypt = require("bcrypt");
 async function register(username, password) {
   const user = await User.findOne({ username: username });
   if (user === null) {
-    bcrypt.hash(password, 10, (err, hash) => {
-      User.create({ username: username, password: hash, role: "user" });
+    const hash = await bcrypt.hash(password, 10);
+    const newUser = await User.create({
+      username: username,
+      password: hash,
+      role: "user",
     });
-    return true;
+    return newUser;
   }
+  return false;
 }
 
 module.exports = { register };

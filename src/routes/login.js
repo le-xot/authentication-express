@@ -12,6 +12,7 @@ const {
 router.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../static/login.html"));
 });
+
 router.get("/denied", (req, res) => {
   res.sendFile(path.join(__dirname, "../static/denied.html"));
 });

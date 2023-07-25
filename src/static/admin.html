@@ -11,20 +11,18 @@
   <body align="center">
     <h2>Поздравляю, вы админ 😎</h2>
     <form method="POST" action="/admin/delete">
-      <input type="submit" value="Удалить пользователей" />
+      <input type="submit" value="Удалить пользователей" style="width: 200px" />
     </form>
     <form method="GET" action="/admin/exit">
-      <input type="submit" value="Выйти" />
+      <input type="submit" value="Выйти" style="width: 200px" />
     </form>
     <a href="/" target="_self">
-      <input type="submit" value="Домой" />
+      <input type="submit" value="Домой" style="width: 200px" />
     </a>
     <table id="usersTable" align="center">
       <thead>
         <tr>
           <th>Username</th>
-          <th>⠀⠀⠀</th>
-          <th>Password</th>
           <th>⠀⠀⠀</th>
           <th>Role</th>
         </tr>
@@ -39,8 +37,6 @@
             return `
               <tr>
                 <td>${user.username}</td>
-                <th>⠀⠀⠀</th>
-                <td>${user.password}</td>
                 <th>⠀⠀⠀</th>
                 <td>${user.role}</td>
               </tr>

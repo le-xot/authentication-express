@@ -14,6 +14,11 @@ router.get("/api/users", authMiddleware, async (req, res) => {
   res.json(users);
 });
 
+router.get("/exit", (req, res) => {
+  res.clearCookie("accessToken");
+  res.redirect("/");
+});
+
 router.post("/delete", authMiddleware, async (req, res) => {
   await deleteUsers();
   res.redirect("/admin");

@@ -8,7 +8,6 @@ async function register(username, password) {
     const newUser = await User.create({
       username: username,
       password: hash,
-      role: "user",
     });
     return newUser;
   }

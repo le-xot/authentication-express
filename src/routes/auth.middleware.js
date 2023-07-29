@@ -22,7 +22,6 @@ async function authMiddleware(req, res, next) {
         }
         const user = JSON.parse(reply);
         const { accessToken, refreshToken } = generateTokens(user);
-        console.log(accessToken, refreshToken);
         res.cookie("accessToken", accessToken);
         res.cookie("refreshToken", refreshToken);
         next();

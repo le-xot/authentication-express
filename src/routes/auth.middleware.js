@@ -1,28 +1,24 @@
 const jwt = require("jsonwebtoken");
 const { client } = require("../server/redis.service");
 const { generateTokens } = require("../services/generateTokens.js");
-const { promisify } = require("util");
 
-const verifyJwt = promisify(jwt.verify);
-const clientGetAsync = promisify(client.get);
-
-async function authMiddleware(req, res, next) {
+function authMiddleware(req, res, next) {
   const accessToken = req.cookies.accessToken;
   const refreshToken = req.cookies.refreshToken;
 
   try {
     const secret = process.env.SECRET_TOKEN_ACCESS;
-    if (accessToken && (await verifyJwt(accessToken, secret))) {
+    if (accessToken && jwt.verify(accessToken, secret)) {
       next();
     } else if (refreshToken) {
       try {
-        const reply = await clientGetAsync(refreshToken);
+        const reply = client.get(refreshToken);
         if (!reply) {
           return res.redirect("/login");
         }
         const user = JSON.parse(reply);
-        const { accessToken, refreshToken } = generateTokens(user);
-        res.cookie("accessToken", accessToken);
+        const { newAccessToken, refreshToken } = generateTokens(user);
+        res.cookie("accessToken", newAccessToken);
         res.cookie("refreshToken", refreshToken);
         next();
       } catch (err) {

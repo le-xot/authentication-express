@@ -6,15 +6,11 @@ function authMiddleware(req, res, next) {
   const accessToken = req.cookies.accessToken;
   const refreshToken = req.cookies.refreshToken;
 
-  if (!accessToken) {
-    return res.redirect("/login");
-  }
-
   try {
     const secret = process.env.SECRET_TOKEN_ACCESS;
-    if (jwt.verify(accessToken, secret)) {
+    if (accessToken && jwt.verify(accessToken, secret)) {
       next();
-    } else {
+    } else if (refreshToken) {
       client.get(refreshToken, (err, reply) => {
         if (err || !reply) {
           return res.redirect("/login");
@@ -25,6 +21,8 @@ function authMiddleware(req, res, next) {
         res.cookie("refreshToken", refreshToken);
         next();
       });
+    } else {
+      return res.redirect("/login");
     }
   } catch (error) {
     return res.redirect("/login");

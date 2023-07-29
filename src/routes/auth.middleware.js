@@ -2,6 +2,8 @@ const jwt = require("jsonwebtoken");
 const { client } = require("../server/redis.service");
 const { generateTokens } = require("../services/generateTokens.js");
 const { promisify } = require("util");
+
+const verifyJwt = promisify(jwt.verify);
 const clientGetAsync = promisify(client.get);
 
 async function authMiddleware(req, res, next) {
@@ -10,7 +12,7 @@ async function authMiddleware(req, res, next) {
 
   try {
     const secret = process.env.SECRET_TOKEN_ACCESS;
-    if (accessToken && jwt.verify(accessToken, secret)) {
+    if (accessToken && (await verifyJwt(accessToken, secret))) {
       next();
     } else if (refreshToken) {
       try {

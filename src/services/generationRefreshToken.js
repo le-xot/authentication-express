@@ -1,4 +1,4 @@
-const { client } = require("./redis.service");
+const { client } = require("../server/redis.service.js");
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
 function generationRefreshToken(newUser) {

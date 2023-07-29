@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
-const { client } = require("./redis.service");
-const { generationAccessToken } = require("./generationAccessToken");
+const { client } = require("../server/redis.service");
+const { generationAccessToken } = require("../services/generationAccessToken");
 
 function authMiddleware(req, res, next) {
   const accessToken = req.cookies.accessToken;

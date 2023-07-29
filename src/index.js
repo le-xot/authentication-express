@@ -1,6 +1,6 @@
 const express = require("./app.js");
-const { connectDatabase } = require("./services/db.service.js");
-const { client } = require("./services/redis.service.js");
+const { connectDatabase } = require("./server/db.service.js");
+const { client } = require("./server/redis.service.js");
 const port = 3000;
 
 async function bootstrap() {

@@ -17,11 +17,12 @@ function authMiddleware(req, res, next) {
           return res.redirect("/login");
         }
         const user = JSON.parse(reply);
-        const { newAccessToken, refreshToken } = generateTokens(user);
+        const { newAccessToken, newRefreshToken } = generateTokens(user);
         res.cookie("accessToken", newAccessToken);
-        res.cookie("refreshToken", refreshToken);
+        res.cookie("refreshToken", newRefreshToken);
         next();
       } catch (err) {
+        console.log(err);
         return res.redirect("/login");
       }
     } else {

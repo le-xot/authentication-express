@@ -20,8 +20,9 @@ function authMiddleware(req, res, next) {
           return res.redirect("/login");
         }
         const user = JSON.parse(reply);
-        const { accessToken } = generateTokens(user);
+        const { accessToken, refreshToken } = generateTokens(user);
         res.cookie("accessToken", accessToken);
+        res.cookie("refreshToken", refreshToken);
         next();
       });
     }

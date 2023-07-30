@@ -15,12 +15,15 @@ router.get("/denied", (req, res) => {
 router.post("/", async (req, res) => {
   const { username, password } = req.body;
   const user = await login(username, password);
+
   if (user) {
     const { accessToken, refreshToken } = generateTokens(user);
+
     res.cookie("accessToken", accessToken);
     res.cookie("refreshToken", refreshToken);
     return res.redirect("/admin");
   }
+  
   return res.redirect("/login/denied");
 });
 

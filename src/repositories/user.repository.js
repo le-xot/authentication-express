@@ -19,4 +19,13 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model("User", userSchema);
 
-module.exports = { User };
+async function getUsers() {
+  const users = await User.find({});
+  return users;
+}
+
+async function deleteUsers() {
+  await User.deleteMany({ role: { $ne: "admin" } });
+}
+
+module.exports = { User, getUsers, deleteUsers };

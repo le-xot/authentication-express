@@ -7,10 +7,13 @@ function authMiddleware(req, res, next) {
   const accessToken = req.cookies.accessToken;
 
   try {
+    const secret = process.env.SECRET_TOKEN_ACCESS;
     if (jwt.verify(accessToken, secret)) {
       return next();
     }
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
 
   return res.redirect("/login");
 

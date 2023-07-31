@@ -1,4 +1,4 @@
-const { User } = require("../repos/user.repo.js");
+const { User } = require("../repositories/user.repository.js");
 const bcrypt = require("bcrypt");
 
 async function login(username, password) {

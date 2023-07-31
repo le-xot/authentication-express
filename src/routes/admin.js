@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const path = require("path");
-const { deleteUsers } = require("../services/deleteUsers.service.js");
-const { getUsers } = require("../api/apiUsers.js");
-const authMiddleware = require("./auth.middleware.js");
+const { deleteUsers } = require("../repositories/user.repository.js");
+const { getUsers } = require("../repositories/user.repository.js");
+const authMiddleware = require("../middlewares/auth.middleware.js");
 
 router.get("/", authMiddleware, (req, res) => {
   res.sendFile(path.join(__dirname, "../static/admin.html"));

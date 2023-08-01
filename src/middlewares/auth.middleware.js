@@ -11,13 +11,10 @@ async function authMiddleware(req, res, next) {
     return next();
   }
   else if (accessToken == undefined && refreshToken) {
-    console.log('refreshToken:', refreshToken);
     const username = await client.get(refreshToken);
-    console.log('username:', username);
     if (username) {
       const user = await User.findOne({ username: username });
       if (user) {
-        console.log('user:', user);
         const { accessToken: newAccessToken, refreshToken: newRefreshToken } = generateTokens(user);
         res.clearCookie("accessToken");
         res.clearCookie("refreshToken");

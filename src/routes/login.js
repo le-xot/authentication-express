@@ -20,7 +20,11 @@ router.post("/", async (req, res) => {
     return res.send("Username is empty");
   }
 
+<<<<<<< Updated upstream
   console.log(login(username, password));
+=======
+  return res.redirect("/login/denied");
+>>>>>>> Stashed changes
 });
 
 module.exports = router;

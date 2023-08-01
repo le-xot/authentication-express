@@ -11,7 +11,7 @@ function generateTokens(user) {
     expiresIn: "7d",
   });
 
-  redis.client.set(user.username, refreshToken, "EX", 7 * 24 * 60 * 60);
+  redis.client.set(refreshToken, user.username, "EX", 7 * 24 * 60 * 60);
 
   return { accessToken, refreshToken };
 }

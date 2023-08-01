@@ -18,7 +18,7 @@ async function authMiddleware(req, res, next) {
       const user = await User.findOne({ username: username });
       if (user) {
         console.log('user:', user);
-        const { newAccessToken, newRefreshToken } = generateTokens(user);
+        const { accessToken: newAccessToken, refreshToken: newRefreshToken } = generateTokens(user);
         res.clearCookie("accessToken");
         res.clearCookie("refreshToken");
         res.cookie("accessToken", newAccessToken);

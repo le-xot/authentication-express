@@ -3,7 +3,6 @@ const redis = require("../server/redis.service");
 const { SECRET_TOKEN_ACCESS, SECRET_TOKEN_REFRESH } = require("./environment.service");
 
 function generateTokens(user) {
-  console.log("generateTokens", user);
   const accessToken = jwt.sign({ user }, SECRET_TOKEN_ACCESS, {
     expiresIn: "15m",
   });
@@ -14,7 +13,6 @@ function generateTokens(user) {
 
   redis.client.set(refreshToken, user.username, "EX", 7 * 24 * 60 * 60);
 
-  console.log('Tokens:', accessToken, refreshToken);
   return { accessToken, refreshToken };
 }
 

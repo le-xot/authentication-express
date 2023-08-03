@@ -1,6 +1,8 @@
 import { User } from "../repositories/user.repository";
 import bcrypt from "bcrypt";
 
+
+
 async function register(username: string, password: string) {
   const user = await User.findOne({ username });
 
@@ -19,3 +21,4 @@ async function register(username: string, password: string) {
 }
 
 export { register };
+

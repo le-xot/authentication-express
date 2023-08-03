@@ -1,4 +1,4 @@
-import redis from "redis";
+import redis from "ioredis";
 
 const client = redis.createClient();
 

@@ -1,24 +1,26 @@
-const app = require("./app.js");
-const { connectDatabase } = require("./server/db.service.js");
-const { client } = require("./server/redis.service.js");
-const { APPLICATION_PORT } = require("./services/environment.service.js");
+import app from "./app";
+import { connectDatabase } from "./server/db.service";
+import { client } from "./server/redis.service";
+import environment from "./services/environment.service";
+
+const { applicationPort } = environment;
 
 async function bootstrap() {
   try {
     await connectDatabase();
 
-    app.listen(APPLICATION_PORT);
+    app.listen(applicationPort);
   } catch (error) {
     console.log(error);
   }
 
   try {
-    await client.connect();
+    // await client.connect();
   } catch (error) {
     console.log(error);
   }
 
-  console.log(`http://localhost:${APPLICATION_PORT}/`);
+  console.log(`http://localhost:${applicationPort}/`);
 }
 
 bootstrap();

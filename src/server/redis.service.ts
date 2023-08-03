@@ -1,4 +1,5 @@
-const redis = require("redis");
+import redis from "redis";
+
 const client = redis.createClient();
 
 client.on("connect", () => {
@@ -9,4 +10,4 @@ client.on("error", (err) => {
   console.error("Error connecting to Redis", err);
 });
 
-module.exports = { client };
+export { client };

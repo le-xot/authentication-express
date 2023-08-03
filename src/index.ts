@@ -14,12 +14,6 @@ async function bootstrap() {
     console.log(error);
   }
 
-  try {
-    // await client.connect();
-  } catch (error) {
-    console.log(error);
-  }
-
   console.log(`http://localhost:${applicationPort}/`);
 }
 

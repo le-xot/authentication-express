@@ -16,6 +16,7 @@ router.get("/api/users", authMiddleware, async (Request, Response) => {
 
 router.get("/exit", (Request, Response) => {
   Response.clearCookie("accessToken");
+  Response.clearCookie("refreshToken");
   Response.redirect("/");
 });
 

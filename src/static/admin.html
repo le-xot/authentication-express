@@ -30,6 +30,12 @@
       <tbody></tbody>
     </table>
     <script>
+      fetch("/refresh")
+        .then((response) => response.json())
+        .then((tokens) => {
+          document.cookie = `accessToken=${tokens.accessToken}`;
+          document.cookie = `refreshToken=${tokens.refreshToken}`;
+        });
       fetch("admin/api/users")
         .then((response) => response.json())
         .then((users) => {

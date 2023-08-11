@@ -8,6 +8,10 @@ export async function register(username: string, password: string) {
         return false;
     }
 
+    if (password == null) {
+        throw new Error('password argument required');
+    }
+
     const hash = await bcrypt.hash(password, 10);
 
     user = await User.create({

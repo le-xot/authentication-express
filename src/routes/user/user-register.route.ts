@@ -5,6 +5,10 @@ import { register } from '../../services/user/register.service';
 export const registerRoute = async (request: Request, response: Response) => {
     const { username, password } = request.body;
 
+    if (!username || !password) {
+        return response.status(400).end('Register failed!');
+    }
+
     const newUser = await register(username, password);
 
     if (!newUser) {

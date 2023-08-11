@@ -1,20 +1,15 @@
-import express from "express";
-import cookieParser from "cookie-parser";
-import indexRouter from "./routes/index";
-import adminRouter from "./routes/admin";
-import loginRouter from "./routes/login";
-import registerRouter from "./routes/register";
-import refreshRouter from "./routes/refresh";
+import express from 'express';
+import cookieParser from 'cookie-parser';
 
-const app = express();
+import { UserRouter } from './routes/user';
+import { AdminRouter } from './routes/admin/admin.router';
+
+export const app = express();
 
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(cookieParser());
 
-app.use("/", indexRouter);
-app.use("/admin", adminRouter);
-app.use("/login", loginRouter);
-app.use("/register", registerRouter);
-app.use("/refresh", refreshRouter);
+app.use('/user', UserRouter);
 
-export default app;
+app.use('/admin', AdminRouter);

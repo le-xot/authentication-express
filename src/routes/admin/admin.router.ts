@@ -10,7 +10,7 @@ AdminRouter.get('/users', authMiddleware, async (request, response) => {
     response.json(users);
 });
 
-AdminRouter.post('/delete', authMiddleware, async (request, response) => {
+AdminRouter.post('/delete', async (request, response) => {
     await deleteUsers();
 
     response.send('Deleted');

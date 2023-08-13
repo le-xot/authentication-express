@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 
 dotenv.config({
-    path: `${process.env.NODE_ENV}.env`,
+    path: `.env.${process.env.NODE_ENV}`,
 });
 
 const { APPLICATION_PORT, SECRET_TOKEN_ACCESS, SECRET_TOKEN_REFRESH, DEV_TOKEN, MONGO_URI } = process.env;

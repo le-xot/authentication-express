@@ -8,7 +8,7 @@ export function generateTokens(user: IUser): {
     refreshToken: string;
 } {
     const accessToken = jwt.sign({ user }, secretTokenAccess, {
-        expiresIn: '1m',
+        expiresIn: '1h',
     });
 
     const refreshToken = jwt.sign({ user }, secretTokenRefresh, {

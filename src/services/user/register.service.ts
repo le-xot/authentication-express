@@ -5,11 +5,13 @@ export async function register(username: string, password: string) {
     let user = await User.findOne({ username });
 
     if (user !== null) {
+        console.log('User already exists');
         return false;
     }
 
     if (password == null) {
-        throw new Error('password argument required');
+        console.log('Password is required');
+        return false;
     }
 
     const hash = await bcrypt.hash(password, 10);

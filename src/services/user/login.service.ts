@@ -5,12 +5,12 @@ export async function login(username: string, password: string) {
     const user = await User.findOne({ username });
 
     if (!user) {
-        console.log('Нет такого пользователя!');
+        console.log('User not found');
         return false;
     }
 
     if (!bcrypt.compareSync(password, user.password)) {
-        console.log(`Неверный пароль`);
+        console.log('Password does not match');
         return false;
     }
 

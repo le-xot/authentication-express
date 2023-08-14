@@ -1,10 +1,12 @@
 import { Router } from 'express';
-import { authRoute } from './user-auth.route';
+import { loginRoute } from './user-login.route';
 import { refreshRoute } from './user-refresh.route';
 import { registerRoute } from './user-register.route';
+import { profileRoute } from './user-profile.route';
 
 export const UserRouter = Router();
 
-UserRouter.post('/auth', authRoute);
+UserRouter.post('/login', loginRoute);
 UserRouter.post('/refresh', refreshRoute);
 UserRouter.post('/register', registerRoute);
+UserRouter.get('/profile', profileRoute);

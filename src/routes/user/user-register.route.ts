@@ -6,13 +6,13 @@ export const registerRoute = async (request: Request, response: Response) => {
     const { username, password } = request.body;
 
     if (!username || !password) {
-        return response.status(400).end('Register failed!');
+        return response.status(400).end('Username and password are required');
     }
 
     const newUser = await register(username, password);
 
     if (!newUser) {
-        return response.status(400).end('Register failed!');
+        return response.status(400).end('Registration failed');
     }
 
     const { accessToken, refreshToken } = generateTokens(newUser);

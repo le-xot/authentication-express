@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { generateTokens } from '../../services/user/generate-tokens';
 import { login } from '../../services/user/login.service';
 
-export const authRoute = async (request: Request, response: Response) => {
+export const loginRoute = async (request: Request, response: Response) => {
     const { username, password } = request.body;
     const user = await login(username, password);
 
